@@ -24,13 +24,6 @@ public class Login extends HttpServlet {
     private static final String ADMIN_DEFAULT_PASSWORD = "password";
 
     private AccountDAO accountDAO;
-    
-    private Connection connection;
-    private Statement statement;
-    private PreparedStatement checkAdminAccountStmt;
-    private PreparedStatement createAdminAccountStmt;
-    private PreparedStatement getAdministratorPassword;
-
     private ServletContext context;
 
     @Override
@@ -106,7 +99,7 @@ public class Login extends HttpServlet {
 
     private boolean checkInputAdminPassword(String inputPassword) throws SQLException {
         Account adminAccount = accountDAO.getAccount(ADMIN_DEFAULT_USERNAME);
-        return adminAccount.equals(inputPassword);
+        return adminAccount.getPassword().equals(inputPassword);
     }
 
     private void createHeaderLoginPage(PrintWriter out) {

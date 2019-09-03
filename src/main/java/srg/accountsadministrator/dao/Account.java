@@ -35,5 +35,10 @@ public class Account {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password=" + password + '}';
+    }
         
 }
