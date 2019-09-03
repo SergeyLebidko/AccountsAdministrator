@@ -62,8 +62,8 @@ public class Login extends HttpServlet {
 
         //Выводим страничку ввода пароля
         out.print("<html>");
-        createHeaderLoginPage(out);
-        createBodyLoginPage(out, false);
+        createPageHeader(out);
+        createPageBody(out, false);
         out.print("</html>");
     }
 
@@ -88,8 +88,8 @@ public class Login extends HttpServlet {
                 
                 //Выводим страничку ввода пароля
                 out.print("<html>");
-                createHeaderLoginPage(out);
-                createBodyLoginPage(out, true);
+                createPageHeader(out);
+                createPageBody(out, true);
                 out.print("</html>");
             }
         } catch (SQLException ex) {
@@ -102,12 +102,12 @@ public class Login extends HttpServlet {
         return adminAccount.getPassword().equals(inputPassword);
     }
 
-    private void createHeaderLoginPage(PrintWriter out) {
+    private void createPageHeader(PrintWriter out) {
         String header = "<head><title>Accounts Administrator - Login Page</title></head>";
         out.print(header);
     }
 
-    private void createBodyLoginPage(PrintWriter out, boolean isError) {
+    private void createPageBody(PrintWriter out, boolean isError) {
         out.print("<body><center>");
         String[] normalBody = {
             "<h3>Введите пароль администратора</h3>",
