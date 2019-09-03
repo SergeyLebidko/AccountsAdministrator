@@ -24,7 +24,7 @@ public class AccountsList extends HttpServlet {
         response.setCharacterEncoding("Windows-1251");
         response.setContentType("text/html");
 
-        //проверяем, залогинился ли администратор. И если нет, то переводим пользователя на страничку логина
+        //Проверяем, залогинился ли администратор. И если нет, то переводим пользователя на страничку логина
         Boolean adminEntered = (Boolean) context.getAttribute("adminEntered");
         if(adminEntered==null || !adminEntered){
             response.sendRedirect("login");
