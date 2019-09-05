@@ -15,8 +15,9 @@ public class AccountDAO {
     private PreparedStatement getAccountsByIdStmt;
     private PreparedStatement getAccountsByUsernameStmt;
     private PreparedStatement createAccountStmt;
+    private PreparedStatement updateAccountStmt;
     private PreparedStatement getAllAccountsStmt;
-    private PreparedStatement removeAccount;
+    private PreparedStatement removeAccountStmt;
 
     public AccountDAO(String jdbcClassName, String databasePath) throws SQLException, ClassNotFoundException {
         Class.forName(jdbcClassName);
@@ -25,8 +26,9 @@ public class AccountDAO {
         getAccountsByIdStmt = connection.prepareStatement("SELECT * FROM ACCOUNTS WHERE ID=?");
         getAccountsByUsernameStmt = connection.prepareStatement("SELECT * FROM ACCOUNTS WHERE USERNAME=?");
         createAccountStmt = connection.prepareStatement("INSERT INTO ACCOUNTS (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)");
+        updateAccountStmt = connection.prepareStatement("UPDATE ACCOUNTS SET FIRST_NAME=?, LAST_NAME=?, USERNAME=?, PASSWORD=? WHERE ID=?");
         getAllAccountsStmt = connection.prepareStatement("SELECT * FROM ACCOUNTS ORDER BY USERNAME");
-        removeAccount = connection.prepareStatement("DELETE FROM ACCOUNTS WHERE ID=?");
+        removeAccountStmt = connection.prepareStatement("DELETE FROM ACCOUNTS WHERE ID=?");
     }
     
     public Account getAccount(int id) throws SQLException{
@@ -86,17 +88,27 @@ public class AccountDAO {
         createAccountStmt.executeUpdate();
     }
     
+    public void updateAccount(Integer id, String firstName, String lastName, String username, String password) throws SQLException{
+        updateAccountStmt.setString(1, firstName);
+        updateAccountStmt.setString(2, lastName);
+        updateAccountStmt.setString(3, username);
+        updateAccountStmt.setString(4, password);
+        updateAccountStmt.setInt(5, id);
+        updateAccountStmt.executeUpdate();
+    }
+    
     public void removeAccount(int id) throws SQLException{
-        removeAccount.setInt(1, id);
-        removeAccount.executeUpdate();
+        removeAccountStmt.setInt(1, id);
+        removeAccountStmt.executeUpdate();
     }
     
     public void dispose() throws SQLException{
         getAccountsByIdStmt.close();
         getAccountsByUsernameStmt.close();
         createAccountStmt.close();
+        updateAccountStmt.close();
         getAllAccountsStmt.close();
-        removeAccount.close();
+        removeAccountStmt.close();
         connection.close();
     }
 

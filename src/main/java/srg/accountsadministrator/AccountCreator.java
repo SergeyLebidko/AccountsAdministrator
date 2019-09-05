@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import srg.accountsadministrator.dao.AccountDAO;
 
-public class AccountCreater extends HttpServlet {
+public class AccountCreator extends HttpServlet {
 
     private ServletContext context;
     private AccountDAO accountDAO;
@@ -46,6 +46,8 @@ public class AccountCreater extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("Windows-1251");
+        response.setContentType("text/html");
+        response.setCharacterEncoding("Windows-1251");
 
         boolean isCancel = request.getParameter("cancel") != null;
         if (isCancel) {
@@ -53,7 +55,6 @@ public class AccountCreater extends HttpServlet {
             return;
         }
 
-        response.setCharacterEncoding("Windows-1251");
         PrintWriter out = response.getWriter();
 
         String firstName = request.getParameter("first_name");
@@ -103,7 +104,6 @@ public class AccountCreater extends HttpServlet {
         out.print("<body>");
         out.print("<center>");
         out.print("<h3>Введите данные нового аккаунта</h3>");
-        //out.print("<br>");
         if (msg != null) {
             out.print("<h3 style='color: red;'>" + msg + "</h3>");
         }
@@ -139,7 +139,6 @@ public class AccountCreater extends HttpServlet {
         out.print("<center>");
         out.print("<h3>Не удалось создать учетную запись</h3>");
         out.print("<a href='accounts'>К списку аккаунтов</a> ");
-        out.print("<a href='create_account'>Создать еще аккаунт</a>");
         out.print("</center>");
         out.print("</body>");
     }

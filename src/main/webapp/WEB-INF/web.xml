@@ -21,8 +21,8 @@
         <servlet-class>srg.accountsadministrator.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AccountCreater</servlet-name>
-        <servlet-class>srg.accountsadministrator.AccountCreater</servlet-class>
+        <servlet-name>AccountCreator</servlet-name>
+        <servlet-class>srg.accountsadministrator.AccountCreator</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AccountRemover</servlet-name>
@@ -45,7 +45,7 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AccountCreater</servlet-name>
+        <servlet-name>AccountCreator</servlet-name>
         <url-pattern>/create_account</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
