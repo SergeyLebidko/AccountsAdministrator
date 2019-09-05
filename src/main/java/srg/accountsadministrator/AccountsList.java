@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -88,18 +86,18 @@ public class AccountsList extends HttpServlet {
             out.print("<td>"+account.getUsername()+"</td>");
             out.print("<td>"+account.getPassword()+"</td>");
             out.print("<td>");
-            out.print("<a href=''>Изменить</a>");
+            out.print("<a href='edit_account'>Изменить</a>");
             out.print("&nbsp&nbsp");
-            out.print("<a href=''>Удалить</a>");
+            out.print("<a href='remove_account'>Удалить</a>");
             out.print("</td>");
             out.print("</tr>");
         }
 
         out.print("<tr>");
         out.print("<td colspan=3>");
-        out.print("<a href=''>Добавить аккаунт</a>");
+        out.print("<a href='create_account'>Добавить аккаунт</a>");
         out.print("<br>");
-        out.print("<a href=''>Выход</a>");
+        out.print("<a href='logout'>Выход</a>");
         out.print("</td>");
         out.print("</tr>");
         out.print("</table>");
