@@ -34,6 +34,7 @@ public class AccountRemover extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         out.print("Сервлет для удаления аккаунта");
+        out.print(" id = "+request.getParameter("id"));
     }
 
     @Override

@@ -34,6 +34,7 @@ public class AccountEditor extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         out.print("Сервлет для редактирования аккаунта");
+        out.print(" id = "+request.getParameter("id"));
     }
 
     @Override

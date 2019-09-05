@@ -86,9 +86,9 @@ public class AccountsList extends HttpServlet {
             out.print("<td>"+account.getUsername()+"</td>");
             out.print("<td>"+account.getPassword()+"</td>");
             out.print("<td>");
-            out.print("<a href='edit_account'>Изменить</a>");
+            out.print("<a href='edit_account?id="+account.getId()+"'>Изменить</a>");
             out.print("&nbsp&nbsp");
-            out.print("<a href='remove_account'>Удалить</a>");
+            out.print("<a href='remove_account?id="+account.getId()+"'>Удалить</a>");
             out.print("</td>");
             out.print("</tr>");
         }

@@ -16,7 +16,7 @@ public class Login extends HttpServlet {
 
     private static final String ADMIN_DEFAULT_FIRST_NAME = "Admin";
     private static final String ADMIN_DEFAULT_LAST_NAME = "Admin";
-    private static final String ADMIN_DEFAULT_USERNAME = "Administrator";
+    public static final String ADMIN_DEFAULT_USERNAME = "Administrator";
     private static final String ADMIN_DEFAULT_PASSWORD = "password";
 
     private AccountDAO accountDAO;
