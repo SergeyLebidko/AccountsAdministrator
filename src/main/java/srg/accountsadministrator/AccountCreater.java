@@ -14,13 +14,13 @@ import srg.accountsadministrator.dao.AccountDAO;
 public class AccountCreater extends HttpServlet {
 
     private ServletContext context;
-    private AccountDAO AccountDAO;
+    private AccountDAO accountDAO;
     
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         context = config.getServletContext();
-        AccountDAO = (AccountDAO)context.getAttribute("accountDAO");
+        accountDAO = (AccountDAO)context.getAttribute("accountDAO");
     }
 
     @Override
@@ -77,7 +77,7 @@ public class AccountCreater extends HttpServlet {
         }
         
         try {
-            AccountDAO.createAccount(firstName, lastName, username, password);
+            accountDAO.createAccount(firstName, lastName, username, password);
             
             //Вывод сообщения об успешном создании аккаунта
             out.print("<html>");

@@ -16,6 +16,7 @@ public class AccountDAO {
     private PreparedStatement getAccountsByUsernameStmt;
     private PreparedStatement createAccountStmt;
     private PreparedStatement getAllAccountsStmt;
+    private PreparedStatement removeAccount;
 
     public AccountDAO(String jdbcClassName, String databasePath) throws SQLException, ClassNotFoundException {
         Class.forName(jdbcClassName);
@@ -25,6 +26,7 @@ public class AccountDAO {
         getAccountsByUsernameStmt = connection.prepareStatement("SELECT * FROM ACCOUNTS WHERE USERNAME=?");
         createAccountStmt = connection.prepareStatement("INSERT INTO ACCOUNTS (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)");
         getAllAccountsStmt = connection.prepareStatement("SELECT * FROM ACCOUNTS ORDER BY USERNAME");
+        removeAccount = connection.prepareStatement("DELETE FROM ACCOUNTS WHERE ID=?");
     }
     
     public Account getAccount(int id) throws SQLException{
@@ -84,9 +86,17 @@ public class AccountDAO {
         createAccountStmt.executeUpdate();
     }
     
+    public void removeAccount(int id) throws SQLException{
+        removeAccount.setInt(1, id);
+        removeAccount.executeUpdate();
+    }
+    
     public void dispose() throws SQLException{
         getAccountsByIdStmt.close();
         getAccountsByUsernameStmt.close();
+        createAccountStmt.close();
+        getAllAccountsStmt.close();
+        removeAccount.close();
         connection.close();
     }
 
